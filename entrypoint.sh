@@ -35,7 +35,7 @@ until mysqladmin --defaults-file="$MYSQL_CNF" ping 2>/dev/null; do
 done
 
 # Creates Gzip MySQL dump file
-mysqldump --defaults-file="$MYSQL_CNF" --protocol=tcp "$MYSQL_DB_NAME" | gzip > $DUMP_FILE
+mysqldump --defaults-file="$MYSQL_CNF" --single-transaction --protocol=tcp "$MYSQL_DB_NAME" | gzip > $DUMP_FILE
 
 # Close MySQL connection
 mysqladmin --defaults-file="$MYSQL_CNF" shutdown 2>/dev/null || true
